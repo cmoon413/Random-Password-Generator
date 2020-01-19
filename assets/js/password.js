@@ -9,6 +9,7 @@ let upperCase
 let lowerCase
 let alphaNumeric = /^[0-9a-z]+$/
 let customMap
+let password = document.querySelector('password')
     //creating a array of possible characters to run functions against
 for (let i = 33; i < 127; i++) {
     charMap.push(String.fromCharCode(i))

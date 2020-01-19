@@ -1,11 +1,27 @@
 var charMap = []
+var AsciiPassword = ""
+var password = document.querySelector('#password')
+
 
 function getRandom(arrayLength) {
     return Math.random() * (arrayLength + 1)
 }
 
+function CreatePassword(size) {
+    for (let i = 0; i < size; i++) {
+        AsciiPassword += (charMap[parseInt(getRandom(charMap.length - 1))]);
+    }
+
+}
+// displays password and resets password field
+function renderPassword() {
+    password.innerHTML = AsciiPassword
+    AsciiPassword = ""
+    charMap = []
+}
+//function to pull in values selected and create password
 function generatePassword() {
-    let passwordSize = document.getElementById('passwordSize').value
+    var passwordSize = document.getElementById('passwordSize').value
     const specialChar = document.getElementById('specialChar').checked
     const numeric = document.getElementById('numeric').checked
     const upperCase = document.getElementById('upperCase').checked
@@ -14,8 +30,13 @@ function generatePassword() {
 
 
     //create array of possible password characters
+    if (!specialChar && !numeric && !upperCase && !lowerCase) {
+        alert('please select at least one character type')
+        return
+    }
+
     if (specialChar) {
-        console.log('test')
+
         for (let i = 33; i < 48; i++) {
             charMap.push(String.fromCharCode(i))
         }
@@ -31,7 +52,6 @@ function generatePassword() {
             charMap.push(String.fromCharCode(l))
 
         }
-        console.log('finish')
     }
 
     if (numeric) {
@@ -52,6 +72,7 @@ function generatePassword() {
             charMap.push(String.fromCharCode(i))
         }
     }
-
+    CreatePassword(passwordSize)
+    renderPassword()
 
 }
