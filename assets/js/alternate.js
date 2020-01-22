@@ -33,6 +33,9 @@ function generatePassword() {
     if (!specialChar && !numeric && !upperCase && !lowerCase) {
         alert('please select at least one character type')
         return
+    } else if (passwordSize < 8 || passwordSize > 128) {
+        alert('please select a password from 8 to 128 digits')
+        return
     }
 
     if (specialChar) {
